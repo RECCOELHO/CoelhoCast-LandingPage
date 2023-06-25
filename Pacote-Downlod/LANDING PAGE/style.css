@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Bodoni&display=swap');
 
-
 * {
     margin: 0;
     padding: 0; 
     box-sizing: border-box;
     text-decoration: none;
 }
-
 
 body{
     font-size: 100%;
@@ -20,6 +18,7 @@ body{
     justify-content: space-around;
     padding: 20px;
 }
+
 .cabeçalho-img{
     height: 44px; 
     border-radius: 50%
