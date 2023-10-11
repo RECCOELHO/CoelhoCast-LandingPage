@@ -1,4 +1,5 @@
-# [Página de Entrada do CoelhoCast](https://vercel.com/reccoelhos-projects/paginadeentradacoelhocast)
+# [Página de Entrada do CoelhoCast](https://paginadeentradacoelhocast.vercel.app/)
+
 ![Captura de tela 2023-10-11 111038](https://github.com/RECCOELHO/CoelhoCast-LandingPage/assets/63757384/38f9bfeb-6d91-4f85-8e6b-aebf188b3be6)
 
 Bem-vindo à página de entrada do CoelhoCast! Este é o ponto de partida para mergulhar no emocionante mundo dos podcasts. Aqui, você encontrará informações sobre o nosso podcast, episódios anteriores e como nos acompanhar.
