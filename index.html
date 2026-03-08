@@ -1,61 +1,1045 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Coelho Cast conheça profissoes novas nesse PODCAST!!">
-    <link rel="stylesheet" type="text/css" href="Pacote-Downlod/LANDING PAGE/style.css">
-    <link rel="shortcut icon" href="Pacote-Downlod/LANDING PAGE/favicon/favicon.ico" type="image/x-icon">
-    <title>Coelho Cast</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Coelho Cast — Seu podcast de profissões. Histórias reais, entreterimento e conhecimento.">
+  <title>Coelho Cast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep: #0d0b1a;
+      --purple: #6456BF;
+      --purple-light: #8a7fd4;
+      --cyan: #73BCD9;
+      --cyan-light: #94E1F2;
+      --gold: #e8c97a;
+      --white: #f4f2ff;
+      --muted: #9b97b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--deep);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: linear-gradient(to bottom, rgba(13,11,26,0.95), transparent);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--cyan-light);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cyan-light); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 4rem;
+      overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.25;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    .hero-blob-1 {
+      width: 600px; height: 600px;
+      background: var(--purple);
+      top: -100px; left: -100px;
+    }
+
+    .hero-blob-2 {
+      width: 500px; height: 500px;
+      background: var(--cyan);
+      bottom: -150px; right: 200px;
+      animation-delay: -5s;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.08); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(100, 86, 191, 0.2);
+      border: 1px solid rgba(100, 86, 191, 0.4);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--cyan-light);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 9vw, 9rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, var(--white) 30%, var(--cyan-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-sub strong { color: var(--white); font-weight: 400; }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      color: var(--white);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 30px rgba(100,86,191,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(100,86,191,0.6);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--white); }
+
+    .hero-image-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-ring {
+      position: relative;
+      width: 460px; height: 460px;
+    }
+
+    .hero-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(116, 188, 217, 0.25);
+      animation: spin 20s linear infinite;
+    }
+
+    .hero-ring-outer::before {
+      content: '';
+      position: absolute;
+      top: -4px; left: 50%;
+      width: 8px; height: 8px;
+      background: var(--cyan-light);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px var(--cyan-light);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero-circle {
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--purple), var(--deep));
+      border: 2px solid rgba(255,255,255,0.07);
+    }
+
+    .hero-circle-inner {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 40% 40%, rgba(100,86,191,0.5), rgba(13,11,26,0.8));
+      font-size: 7rem;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 30px; right: -20px;
+      background: rgba(13,11,26,0.9);
+      border: 1px solid rgba(116,188,217,0.3);
+      border-radius: 16px;
+      padding: 1rem 1.4rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--cyan-light);
+      line-height: 1;
+    }
+
+    .hero-badge-label {
+      font-size: 0.68rem;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* PLATFORMS */
+    .platforms {
+      padding: 2rem 4rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      overflow-x: auto;
+    }
+
+    .platforms-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .platforms-divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+
+    .platform-links { display: flex; gap: 2rem; align-items: center; }
+
+    .platform-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .platform-link:hover { color: var(--white); transform: translateY(-1px); }
+
+    .platform-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    .platform-icon.spotify  { background: rgba(30,215,96,0.15); color: #1ED760; }
+    .platform-icon.instagram{ background: rgba(225,48,108,0.15); color: #E1306C; }
+    .platform-icon.youtube  { background: rgba(255,0,0,0.15);    color: #FF0000; }
+
+    /* SECTION SHARED */
+    section { padding: 6rem 4rem; }
+
+    .section-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text .section-title span {
+      background: linear-gradient(90deg, var(--purple-light), var(--cyan-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-body {
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      background: linear-gradient(135deg, var(--white), var(--cyan-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .about-card-main {
+      background: linear-gradient(135deg, rgba(100,86,191,0.15), rgba(115,188,217,0.1));
+      border: 1px solid rgba(100,86,191,0.3);
+      border-radius: 24px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card-main::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(100,86,191,0.3), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .about-quote {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-quote span { color: var(--cyan-light); }
+
+    .about-host {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-host-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .about-host-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+
+    .about-host-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(100,86,191,0.4);
+      box-shadow: 0 20px 60px rgba(100,86,191,0.15);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+
+    .feature-card:hover::before { transform: scaleX(1); }
+
+    .feature-icon { font-size: 2.2rem; margin-bottom: 1.2rem; }
+
+    .feature-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+
+    .feature-body {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* EPISODES */
+    .episodes { background: rgba(255,255,255,0.01); }
+
+    .episodes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .episode-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .episode-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto auto;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1.4rem 1.8rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .episode-item:hover {
+      background: rgba(100,86,191,0.1);
+      border-color: rgba(100,86,191,0.3);
+      transform: translateX(4px);
+    }
+
+    .episode-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: rgba(255,255,255,0.15);
+      text-align: center;
+      line-height: 1;
+    }
+
+    .episode-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .episode-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1rem;
+    }
+
+    .episode-tag {
+      display: inline-block;
+      background: rgba(100,86,191,0.2);
+      color: var(--purple-light);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .episode-play {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .episode-item:hover .episode-play {
+      transform: scale(1.1);
+      box-shadow: 0 4px 20px rgba(100,86,191,0.5);
+    }
+
+    /* QUOTE */
+    .quote-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(100,86,191,0.12), rgba(115,188,217,0.08));
+      border-top: 1px solid rgba(100,86,191,0.15);
+      border-bottom: 1px solid rgba(100,86,191,0.15);
+    }
+
+    .quote-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.1;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      letter-spacing: 0.03em;
+    }
+
+    .quote-big span {
+      background: linear-gradient(90deg, var(--purple-light), var(--cyan-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .quote-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    /* CTA */
+    .cta-section { text-align: center; }
+    .cta-section .section-title { max-width: 600px; margin: 0 auto 1rem; }
+
+    .cta-body {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 450px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 4rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      background: linear-gradient(90deg, var(--white), var(--cyan-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+    .footer-socials { display: flex; gap: 1rem; }
+
+    .footer-social-link {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .footer-social-link:hover {
+      background: rgba(100,86,191,0.2);
+      border-color: rgba(100,86,191,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; gap: 3rem; text-align: center; }
+      .hero-image-wrap { order: -1; }
+      .hero-ring { width: 280px; height: 280px; }
+      .hero-ctas { justify-content: center; }
+      .hero-sub { margin: 0 auto 2.8rem; }
+      section { padding: 4rem 2rem; }
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-stats { grid-template-columns: repeat(3,1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+      .platforms { padding: 1.5rem 2rem; gap: 1.5rem; }
+      .episodes-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      footer { flex-direction: column; text-align: center; }
+      .episode-item { grid-template-columns: 40px 1fr auto; }
+      .episode-play { display: none; }
+    }
+  </style>
 </head>
-
 <body>
-    <HEader class="cabeçalho">
 
-        <img class="cabeçalho-img" src="Pacote-Downlod/LANDING PAGE/logocoelhocast2.png" alt="logo do podcast" >
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-icon">🎙️</div>
+      <span class="nav-logo-text">Coelho Cast</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#episodios">Episódios</a></li>
+      <li><a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank">Spotify</a></li>
+      <li><a href="https://www.instagram.com/c.j.coelho/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank">YouTube</a></li>
+    </ul>
+  </nav>
 
-        <nav class="cabeçalho-menu">
-            <a class="cabeçalho-menu-spotfly" href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank">Spotify</a>
-            <a class="cabeçalho-menu-instagram" href="https://www.instagram.com/c.j.coelho/" target="_blank">Instagram</a>
-            <!--<a class="cabeçalho-menu-tiktok" href="">TikTok</a>  -->
-            <a class="cabeçalho-menu-youtudo" href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank">Youtube </a>
-        </nav>
-    </HEader>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
 
-    <main class="conteudo">
-        <section class="conteudo-principal">
-            <div class="conteudo-principal-escrito">
-                <h1 class="conteudo-principal-escrito-titulo">COELHO CAST</h1>
-                <H2 class="conteudo-principal-escrito-subtitulo">SEU PODCAST DE PROFISSÕES. <br> ENTRETERIMENTO E CONHECIMENTO. </H2>
-                <a href="https://www.instagram.com/coelho.cast/" target="_blank"><button class="conteudo-principal-escrito-botao"> ESCUTE-ME</button></a>
+    <div class="hero-content">
+      <div class="hero-tag">🎧 Podcast no ar</div>
+      <h1 class="hero-title">COELHO<br>CAST</h1>
+      <p class="hero-sub">
+        <strong>Profissões reais. Histórias únicas.</strong><br>
+        Cada episódio é uma janela para um mundo que você nunca imaginou — contado por quem vive isso todos os dias.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-primary">
+          ▶ Escute Agora
+        </a>
+        <a href="#episodios" class="btn-ghost">Ver episódios →</a>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <div class="hero-ring">
+        <div class="hero-ring-outer"></div>
+        <div class="hero-circle">
+          <div class="hero-circle-inner">🎙️</div>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-num">100%</div>
+          <div class="hero-badge-label">Histórias Reais</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS BAR -->
+  <div class="platforms">
+    <span class="platforms-label">Disponível em</span>
+    <div class="platforms-divider"></div>
+    <div class="platform-links">
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="platform-link">
+        <div class="platform-icon spotify">🎵</div> Spotify
+      </a>
+      <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="platform-link">
+        <div class="platform-icon youtube">▶</div> YouTube
+      </a>
+      <a href="https://www.instagram.com/c.j.coelho/" target="_blank" class="platform-link">
+        <div class="platform-icon instagram">📸</div> Instagram
+      </a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="sobre">
+    <div class="about animate-in">
+      <div class="about-text">
+        <p class="section-tag">// Sobre o podcast</p>
+        <h2 class="section-title">O que é o<br><span>Coelho Cast?</span></h2>
+        <p class="about-body">
+          Cada pessoa carrega uma profissão — e junto dela, uma história que ninguém conta. O Coelho Cast dá voz a essas histórias: do cotidiano mais inusitado ao bastidor mais surpreendente de profissões que você talvez nunca imaginou que existiam.
+        </p>
+        <p class="about-body">
+          Entreterimento e conhecimento de verdade. Sem roteiro ensaiado, sem respostas óbvias. Só gente real falando sobre o que vive.
+        </p>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num">+20</div>
+            <div class="stat-label">Episódios</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">+15</div>
+            <div class="stat-label">Profissões</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Plataformas</div>
+          </div>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div class="about-card-main">
+          <p class="about-quote">
+            "Você sabia que essa profissão <span>existe de verdade?</span>"
+          </p>
+          <div class="about-host">
+            <div class="about-host-avatar">🐇</div>
+            <div>
+              <div class="about-host-name">C.J. Coelho</div>
+              <div class="about-host-role">Host &amp; Produtor · @c.j.coelho</div>
             </div>
-            <img class="conteudo-principal-img" src="Pacote-Downlod/LANDING PAGE/msg1088448600-1050.jpg" alt="foto oficial do podcast">
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="conteudo-secundario">
-            <h3 class="conteudo-secundario-titulo">No nosso CoelhoCast você vai conhecer:</h3>
-            <p class="conteudo-secundario-paragrafo">Historia de vida com momentos <strong>inusitados.</strong></p>
-            <p class="conteudo-secundario-paragrafo">Profissões que talvez você <strong>nem saiba que exista.</strong></p>
-            <p class="conteudo-secundario-paragrafo">Tem alguma duvida de como é alguma profissão? Aqui voce vai <strong>ouvir a realidade.</strong></p>
-        </section>
-    </main>
+  <!-- FEATURES -->
+  <section>
+    <div class="animate-in">
+      <p class="section-tag">// Por que ouvir</p>
+      <h2 class="section-title">O que você vai encontrar</h2>
+    </div>
+    <div class="features-grid animate-in">
+      <div class="feature-card">
+        <div class="feature-icon">💼</div>
+        <h3 class="feature-title">Profissões Surpreendentes</h3>
+        <p class="feature-body">Descubra carreiras que existem e que você provavelmente nunca ouviu falar — contadas por quem as vive todos os dias.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧬</div>
+        <h3 class="feature-title">Histórias de Vida Reais</h3>
+        <p class="feature-body">Momentos inusitados, viradas inesperadas e bastidores que ninguém costuma mostrar. Aqui, a realidade é o roteiro.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Entreterimento + Conhecimento</h3>
+        <p class="feature-body">Um formato leve e cativante que mistura curiosidade genuína com aprendizado real. Difícil parar de ouvir.</p>
+      </div>
+    </div>
+  </section>
 
-    <footer class="rodape">
-        <img class="rodape-imagem" src="logocoelhocast2.png" alt="roda pe logo">
-    </footer>
+  <!-- EPISODES -->
+  <section class="episodes" id="episodios">
+    <div class="episodes-header animate-in">
+      <div>
+        <p class="section-tag">// Episódios</p>
+        <h2 class="section-title">Últimos episódios</h2>
+      </div>
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-ghost">Ver todos →</a>
+    </div>
+
+    <div class="episode-list animate-in">
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="episode-item">
+        <div class="episode-num">01</div>
+        <div class="episode-info">
+          <div class="episode-title">Como é ser essa profissão na prática?</div>
+          <div class="episode-meta"><span>🕐 45 min</span><span>Conheça quem vive isso todo dia</span></div>
+        </div>
+        <div class="episode-tag">Entrevista</div>
+        <div class="episode-play">▶</div>
+      </a>
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="episode-item">
+        <div class="episode-num">02</div>
+        <div class="episode-info">
+          <div class="episode-title">Profissões que ninguém imagina que existem</div>
+          <div class="episode-meta"><span>🕐 38 min</span><span>Histórias inusitadas e curiosas</span></div>
+        </div>
+        <div class="episode-tag">Especial</div>
+        <div class="episode-play">▶</div>
+      </a>
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="episode-item">
+        <div class="episode-num">03</div>
+        <div class="episode-info">
+          <div class="episode-title">A realidade por trás de uma carreira dos sonhos</div>
+          <div class="episode-meta"><span>🕐 52 min</span><span>Bastidores e verdades não ditas</span></div>
+        </div>
+        <div class="episode-tag">Bate-papo</div>
+        <div class="episode-play">▶</div>
+      </a>
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="episode-item">
+        <div class="episode-num">04</div>
+        <div class="episode-info">
+          <div class="episode-title">De zero a profissional: uma história de virada</div>
+          <div class="episode-meta"><span>🕐 41 min</span><span>Trajetória, superação e recomeço</span></div>
+        </div>
+        <div class="episode-tag">Motivação</div>
+        <div class="episode-play">▶</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section animate-in">
+    <h2 class="quote-big">
+      Toda profissão tem uma<br><span>história que vale ouvir.</span>
+    </h2>
+    <p class="quote-sub">E o Coelho Cast existe para contar essas histórias.</p>
+    <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-primary">
+      ▶ Começar a ouvir
+    </a>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section animate-in">
+    <p class="section-tag">// Fique por dentro</p>
+    <h2 class="section-title">Novos episódios toda semana</h2>
+    <p class="cta-body">
+      Siga o Coelho Cast nas plataformas e nunca perca um episódio. Conteúdo novo, histórias novas — toda semana.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-primary">🎵 Ouvir no Spotify</a>
+      <a href="https://www.instagram.com/c.j.coelho/" target="_blank" class="btn-outline">📸 Seguir no Instagram</a>
+      <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="btn-outline">▶ Ver no YouTube</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Coelho Cast</div>
+    <p class="footer-copy">© 2025 CoelhoCast · @c.j.coelho · Feito com 🎙️</p>
+    <div class="footer-socials">
+      <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="footer-social-link">🎵</a>
+      <a href="https://www.instagram.com/c.j.coelho/" target="_blank" class="footer-social-link">📸</a>
+      <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="footer-social-link">▶</a>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+  </script>
 </body>
-<!-- 
-    a paleta de corres a ser utilizada vai ser esssa:
-   #6456BF -fundo
-   #263F73
-   #4480A6
-   #73BCD9
-   #94E1F2 -fundo
- -->
- <!-- as fontes usadas serão essas:
-    font-family: 'Libre Bodoni', serif;
-    font-family: 'Bebas Neue', cursive;
--->
-
 </html>
