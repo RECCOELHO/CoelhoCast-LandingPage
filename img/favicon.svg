@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1530"/>
+      <stop offset="100%" style="stop-color:#0d0b1a"/>
+    </linearGradient>
+    <linearGradient id="rabbit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#94E1F2"/>
+      <stop offset="100%" style="stop-color:#6456BF"/>
+    </linearGradient>
+    <linearGradient id="inner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1530"/>
+      <stop offset="100%" style="stop-color:#2d1f4a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo arredondado escuro -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- Orelha esquerda (silhueta) -->
+  <ellipse cx="21" cy="20" rx="7" ry="16" fill="url(#rabbit)"/>
+  <!-- Interior orelha esquerda -->
+  <ellipse cx="21" cy="21" rx="4" ry="11" fill="url(#inner)"/>
+
+  <!-- Orelha direita (silhueta) -->
+  <ellipse cx="43" cy="20" rx="7" ry="16" fill="url(#rabbit)"/>
+  <!-- Interior orelha direita -->
+  <ellipse cx="43" cy="21" rx="4" ry="11" fill="url(#inner)"/>
+
+  <!-- Cabeca do coelho -->
+  <ellipse cx="32" cy="46" rx="16" ry="14" fill="url(#rabbit)"/>
+
+  <!-- Olhos (dois pontinhos escuros) -->
+  <circle cx="26" cy="44" r="2.2" fill="#0d0b1a"/>
+  <circle cx="38" cy="44" r="2.2" fill="#0d0b1a"/>
+
+  <!-- Brilho nos olhos -->
+  <circle cx="27" cy="43" r="0.8" fill="white" opacity="0.7"/>
+  <circle cx="39" cy="43" r="0.8" fill="white" opacity="0.7"/>
+
+  <!-- Narizinho -->
+  <ellipse cx="32" cy="49" rx="2" ry="1.4" fill="#0d0b1a" opacity="0.5"/>
+</svg>
