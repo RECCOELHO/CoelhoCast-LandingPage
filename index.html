@@ -383,23 +383,252 @@
     /* Quando JS adiciona "visible", o elemento aparece */
     .animate-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVIDADE celular/tablet abaixo de 900px de largura */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      .nav-links { gap: 1.5rem; }
-      .hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; gap: 3rem; text-align: center; }
-      .hero-image-wrap { order: -1; } /* circulo aparece antes do texto */
-      .hero-ring { width: 280px; height: 280px; }
-      .hero-ctas { justify-content: center; }
-      .hero-sub { margin: 0 auto 2.8rem; }
-      section { padding: 4rem 2rem; }
-      .about { grid-template-columns: 1fr; gap: 3rem; }
-      .platforms { padding: 1.5rem 2rem; gap: 1.5rem; }
-      .features-grid { grid-template-columns: 1fr; }
-      .episodes-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .episode-item { grid-template-columns: 40px 1fr auto; }
+    /* ─── HAMBURGUER E MENU MOBILE ─── */
+
+    /* O botao hamburguer fica escondido no desktop */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 8px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .hamburger:hover { background: rgba(100,86,191,0.2); }
+
+    /* As tres linhas do hamburguer */
+    .hamburger span {
+      display: block;
+      width: 18px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+
+    /* Animacao: linhas viram X quando o menu esta aberto */
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Overlay escuro que cobre a pagina quando o menu esta aberto */
+    .mobile-menu { display: none; }
+
+    .mobile-menu-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* Painel lateral que desliza da direita */
+    .mobile-menu-panel {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: min(320px, 85vw);
+      background: #13102a;
+      border-left: 1px solid rgba(100,86,191,0.2);
+      z-index: 201;
+      padding: 2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    /* Quando o menu esta aberto, o painel e o backdrop ficam visiveis */
+    .mobile-menu.open { display: block; }
+    .mobile-menu.open .mobile-menu-backdrop { opacity: 1; }
+    .mobile-menu.open .mobile-menu-panel { transform: translateX(0); }
+
+    /* Botao X para fechar */
+    .mobile-menu-close {
+      align-self: flex-end;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      margin-bottom: 1.8rem;
+    }
+    .mobile-menu-close:hover { background: rgba(255,50,50,0.15); }
+
+    /* Logo dentro do menu mobile */
+    .mobile-menu-logo {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 2.2rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Links de navegacao do menu mobile */
+    .mobile-menu-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mobile-menu-link {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .mobile-menu-link:hover { background: rgba(100,86,191,0.15); color: var(--white); }
+
+    /* Linha divisoria entre links e plataformas */
+    .mobile-menu-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    /* Botoes das plataformas no menu mobile */
+    .mobile-menu-platforms {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    .mobile-platform-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 14px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .mobile-platform-btn.spotify   { background: rgba(30,215,96,0.1);  border: 1px solid rgba(30,215,96,0.25);  color: #1ED760; }
+    .mobile-platform-btn.instagram { background: rgba(225,48,108,0.1); border: 1px solid rgba(225,48,108,0.25); color: #f77; }
+    .mobile-platform-btn.youtube   { background: rgba(255,0,0,0.1);    border: 1px solid rgba(255,0,0,0.2);     color: #ff6b6b; }
+    .mobile-platform-btn:hover { transform: translateX(4px); }
+
+    /* ─── RESPONSIVIDADE MOBILE (abaixo de 768px) ─── */
+    @media (max-width: 768px) {
+
+      /* Nav: menos padding, esconde links e mostra hamburguer */
+      nav { padding: 1rem 1.4rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero: coluna unica, sem padding excessivo */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.4rem 3.5rem;
+        gap: 2.5rem;
+        text-align: center;
+        min-height: auto;
+      }
+      .hero-image-wrap { order: -1; }
+      .hero-ring { width: 240px; height: 240px; }
+      .hero-badge { bottom: 10px; right: -10px; padding: 0.7rem 1rem; }
+      .hero-badge-num { font-size: 1.5rem; }
+      .hero-ctas { justify-content: center; flex-direction: column; align-items: center; }
+      .hero-sub { margin: 0 auto 2rem; font-size: 1rem; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+
+      /* Barra de plataformas: scroll horizontal no mobile */
+      .platforms { padding: 1.2rem 1.4rem; gap: 1rem; }
+      .platforms-label { display: none; }
+      .platforms-divider { display: none; }
+
+      /* Secoes: padding menor */
+      section { padding: 3.5rem 1.4rem; }
+
+      /* Sobre: coluna unica */
+      .about { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-stats { grid-template-columns: repeat(3,1fr); gap: 0.8rem; }
+      .stat-card { padding: 1rem 0.6rem; }
+      .stat-num { font-size: 2rem; }
+
+      /* Cards de features: coluna unica */
+      .features-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+      .feature-card { padding: 1.5rem; }
+
+      /* Episodios: layout corrigido para mobile */
+      .episodes-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 1.5rem; }
+
+      /* Grade do episodio: numero + info + tag (sem botao play) */
+      .episode-item {
+        grid-template-columns: 44px 1fr;
+        grid-template-rows: auto auto;
+        gap: 0.5rem 1rem;
+        padding: 1.1rem 1.2rem;
+        align-items: start;
+      }
+      .episode-num {
+        grid-row: 1 / 3; /* ocupa as 2 linhas da esquerda */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 1.5rem;
+      }
+      .episode-info { grid-column: 2; }
+      .episode-title { font-size: 0.88rem; margin-bottom: 0.25rem; }
+      .episode-meta { flex-direction: column; gap: 0.15rem; font-size: 0.72rem; }
+      .episode-tag {
+        grid-column: 2;
+        align-self: start;
+        width: fit-content;
+        font-size: 0.6rem;
+        padding: 0.2rem 0.6rem;
+      }
       .episode-play { display: none; }
-      footer { flex-direction: column; text-align: center; }
+
+      /* Secao Instagram */
+      .instagram-section { padding: 3.5rem 1.4rem; }
+      .behold-wrap { padding: 0; }
+
+      /* Frase de impacto */
+      .quote-section { padding: 3.5rem 1.4rem; }
+      .quote-sub { font-size: 0.9rem; margin-bottom: 2rem; }
+
+      /* CTA final */
+      .cta-section { padding: 3.5rem 1.4rem; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+
+      /* Rodape */
+      footer { padding: 2rem 1.4rem; flex-direction: column; text-align: center; gap: 1.2rem; }
+    }
+
+    /* Telas muito pequenas (abaixo de 380px) */
+    @media (max-width: 380px) {
+      .hero-ring { width: 200px; height: 200px; }
+      .hero-title { font-size: 4rem; }
+      .about-stats { grid-template-columns: 1fr 1fr 1fr; }
+      .stat-num { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -407,21 +636,46 @@
 
   <!-- NAVEGACAO: menu fixo no topo -->
   <nav>
-    <!-- Logo: clicando volta ao topo -->
     <a class="nav-logo" href="#">
       <div class="nav-logo-icon">&#127908;</div>
       <span class="nav-logo-text">Coelho Cast</span>
     </a>
-    <!-- Links de navegacao: "#" rola para secao, links externos abrem nova aba -->
+    <!-- Links desktop: so aparecem em telas grandes -->
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#episodios">Episódios</a></li>
       <li><a href="#instagram">Instagram</a></li>
-      <!-- EDITE AQUI: links das plataformas -->
       <li><a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank">Spotify</a></li>
       <li><a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank">YouTube</a></li>
     </ul>
+    <!-- Botao hamburguer: so aparece no celular -->
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Menu mobile: painel lateral que desliza ao clicar no hamburguer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+    <div class="mobile-menu-panel">
+      <button class="mobile-menu-close" id="menuClose">&#10005;</button>
+      <div class="mobile-menu-logo">
+        <div class="nav-logo-icon" style="width:48px;height:48px;font-size:1.4rem;">&#127908;</div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.1em;">Coelho Cast</span>
+      </div>
+      <nav class="mobile-menu-nav">
+        <a href="#sobre"     class="mobile-menu-link" data-close>Sobre</a>
+        <a href="#episodios" class="mobile-menu-link" data-close>Episódios</a>
+        <a href="#instagram" class="mobile-menu-link" data-close>Instagram</a>
+      </nav>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-platforms">
+        <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="mobile-platform-btn spotify">&#127925; Spotify</a>
+        <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="mobile-platform-btn instagram">&#128247; Instagram</a>
+        <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="mobile-platform-btn youtube">&#9654; YouTube</a>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO: primeira secao visivel ao carregar o site -->
   <section class="hero">
@@ -696,22 +950,51 @@
 
   <script>
     // ANIMACOES DE SCROLL
-    // IntersectionObserver: avisa quando um elemento entra na tela visivel.
-    // Adicionamos a classe "visible" para ativar a animacao CSS.
     const scrollObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            // Cada elemento aparece 80ms apos o anterior (efeito escalonado)
             setTimeout(() => entry.target.classList.add('visible'), index * 80);
           }
         });
       },
-      { threshold: 0.1 } // dispara quando 10% do elemento esta visivel
+      { threshold: 0.1 }
     );
-
-    // Observa todos os elementos que devem animar ao entrar na tela
     document.querySelectorAll('.animate-in').forEach(el => scrollObserver.observe(el));
+
+    // MENU HAMBURGUER
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    const menuClose   = document.getElementById('menuClose');
+    const backdrop    = document.getElementById('menuBackdrop');
+
+    // Abre o menu: adiciona classe "open" e bloqueia scroll da pagina
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      hamburger.classList.add('active');
+      document.body.style.overflow = 'hidden'; // impede scroll com menu aberto
+    }
+
+    // Fecha o menu
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu); // fechar ao clicar fora
+
+    // Fechar ao clicar em qualquer link interno (os que tem data-close)
+    document.querySelectorAll('[data-close]').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
   </script>
 
 </body>
