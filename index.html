@@ -34,6 +34,7 @@
       --cyan-light:   #94E1F2;  /* ciano claro (destaques) */
       --white:        #f4f2ff;  /* branco levemente azulado */
       --muted:        #9b97b8;  /* cinza-roxo (textos secundarios) */
+      --twitch:       #9146FF;  /* roxo da Twitch */
     }
 
     /* Faz os links de ancora (#secao) rolarem suavemente */
@@ -198,6 +199,19 @@
     }
     .btn-ghost:hover { color: var(--white); }
 
+    /* Botao Twitch */
+    .btn-twitch {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--twitch);
+      color: var(--white); font-family: 'Syne', sans-serif;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 1rem 2.2rem;
+      border-radius: 100px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 30px rgba(145,70,255,0.35);
+    }
+    .btn-twitch:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(145,70,255,0.55); }
+
     /* Lado direito do hero: circulo com anel giratorio */
     .hero-image-wrap {
       position: relative; z-index: 2;
@@ -260,6 +274,7 @@
     .platform-icon.spotify   { background: rgba(30,215,96,0.15);  color: #1ED760; }
     .platform-icon.instagram { background: rgba(225,48,108,0.15); color: #E1306C; }
     .platform-icon.youtube   { background: rgba(255,0,0,0.15);    color: #FF0000; }
+    .platform-icon.twitch    { background: rgba(145,70,255,0.15); color: #9146FF; }
 
     /* ESTILOS COMPARTILHADOS POR SECOES */
     section { padding: 6rem 4rem; }
@@ -318,11 +333,6 @@
     /* Container do widget Behold — limita a largura e centraliza */
     .behold-wrap { max-width: 1100px; margin: 0 auto; }
 
-    /*
-      Personaliza o visual do widget Behold para combinar com o site escuro.
-      O Behold injeta um Web Component (<behold-widget>) que podemos estilizar.
-      "display: block" garante que ele ocupe a largura total do container.
-    */
     behold-widget { display: block; }
 
     /* Card de instrucao: aparece antes de o usuario configurar o Behold */
@@ -375,18 +385,15 @@
     .footer-socials { display: flex; gap: 1rem; }
     .footer-social-link { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.95rem; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
     .footer-social-link:hover { background: rgba(100,86,191,0.2); border-color: rgba(100,86,191,0.4); transform: translateY(-2px); }
+    .footer-social-link.twitch:hover { background: rgba(145,70,255,0.2); border-color: rgba(145,70,255,0.5); }
 
     /* ANIMACOES DE ENTRADA ao rolar a pagina */
-    /* Entrada fadeUp: elemento sobe do invisivel ao aparecer na tela */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    /* Estado inicial: invisivel e levemente para baixo */
     .animate-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    /* Quando JS adiciona "visible", o elemento aparece */
     .animate-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── HAMBURGUER E MENU MOBILE ─── */
 
-    /* O botao hamburguer fica escondido no desktop */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -404,7 +411,6 @@
     }
     .hamburger:hover { background: rgba(100,86,191,0.2); }
 
-    /* As tres linhas do hamburguer */
     .hamburger span {
       display: block;
       width: 18px; height: 2px;
@@ -414,12 +420,10 @@
       transform-origin: center;
     }
 
-    /* Animacao: linhas viram X quando o menu esta aberto */
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Overlay escuro que cobre a pagina quando o menu esta aberto */
     .mobile-menu { display: none; }
 
     .mobile-menu-backdrop {
@@ -431,7 +435,6 @@
       transition: opacity 0.3s;
     }
 
-    /* Painel lateral que desliza da direita */
     .mobile-menu-panel {
       position: fixed;
       top: 0; right: 0; bottom: 0;
@@ -448,12 +451,10 @@
       overflow-y: auto;
     }
 
-    /* Quando o menu esta aberto, o painel e o backdrop ficam visiveis */
     .mobile-menu.open { display: block; }
     .mobile-menu.open .mobile-menu-backdrop { opacity: 1; }
     .mobile-menu.open .mobile-menu-panel { transform: translateX(0); }
 
-    /* Botao X para fechar */
     .mobile-menu-close {
       align-self: flex-end;
       background: rgba(255,255,255,0.06);
@@ -469,7 +470,6 @@
     }
     .mobile-menu-close:hover { background: rgba(255,50,50,0.15); }
 
-    /* Logo dentro do menu mobile */
     .mobile-menu-logo {
       display: flex; align-items: center; gap: 0.8rem;
       margin-bottom: 2.2rem;
@@ -477,7 +477,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* Links de navegacao do menu mobile */
     .mobile-menu-nav {
       display: flex;
       flex-direction: column;
@@ -500,14 +499,12 @@
     }
     .mobile-menu-link:hover { background: rgba(100,86,191,0.15); color: var(--white); }
 
-    /* Linha divisoria entre links e plataformas */
     .mobile-menu-divider {
       height: 1px;
       background: rgba(255,255,255,0.06);
       margin: 0.5rem 0 1.5rem;
     }
 
-    /* Botoes das plataformas no menu mobile */
     .mobile-menu-platforms {
       display: flex;
       flex-direction: column;
@@ -533,17 +530,16 @@
     .mobile-platform-btn.spotify   { background: rgba(30,215,96,0.1);  border: 1px solid rgba(30,215,96,0.25);  color: #1ED760; }
     .mobile-platform-btn.instagram { background: rgba(225,48,108,0.1); border: 1px solid rgba(225,48,108,0.25); color: #f77; }
     .mobile-platform-btn.youtube   { background: rgba(255,0,0,0.1);    border: 1px solid rgba(255,0,0,0.2);     color: #ff6b6b; }
+    .mobile-platform-btn.twitch    { background: rgba(145,70,255,0.1); border: 1px solid rgba(145,70,255,0.3);  color: #bf94ff; }
     .mobile-platform-btn:hover { transform: translateX(4px); }
 
     /* ─── RESPONSIVIDADE MOBILE (abaixo de 768px) ─── */
     @media (max-width: 768px) {
 
-      /* Nav: menos padding, esconde links e mostra hamburguer */
       nav { padding: 1rem 1.4rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      /* Hero: coluna unica, sem padding excessivo */
       .hero {
         grid-template-columns: 1fr;
         padding: 7rem 1.4rem 3.5rem;
@@ -557,30 +553,24 @@
       .hero-badge-num { font-size: 1.5rem; }
       .hero-ctas { justify-content: center; flex-direction: column; align-items: center; }
       .hero-sub { margin: 0 auto 2rem; font-size: 1rem; }
-      .btn-primary, .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+      .btn-primary, .btn-outline, .btn-twitch { width: 100%; max-width: 300px; justify-content: center; }
 
-      /* Barra de plataformas: scroll horizontal no mobile */
       .platforms { padding: 1.2rem 1.4rem; gap: 1rem; }
       .platforms-label { display: none; }
       .platforms-divider { display: none; }
 
-      /* Secoes: padding menor */
       section { padding: 3.5rem 1.4rem; }
 
-      /* Sobre: coluna unica */
       .about { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-stats { grid-template-columns: repeat(3,1fr); gap: 0.8rem; }
       .stat-card { padding: 1rem 0.6rem; }
       .stat-num { font-size: 2rem; }
 
-      /* Cards de features: coluna unica */
       .features-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
       .feature-card { padding: 1.5rem; }
 
-      /* Episodios: layout corrigido para mobile */
       .episodes-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 1.5rem; }
 
-      /* Grade do episodio: numero + info + tag (sem botao play) */
       .episode-item {
         grid-template-columns: 44px 1fr;
         grid-template-rows: auto auto;
@@ -589,7 +579,7 @@
         align-items: start;
       }
       .episode-num {
-        grid-row: 1 / 3; /* ocupa as 2 linhas da esquerda */
+        grid-row: 1 / 3;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -608,23 +598,18 @@
       }
       .episode-play { display: none; }
 
-      /* Secao Instagram */
       .instagram-section { padding: 3.5rem 1.4rem; }
       .behold-wrap { padding: 0; }
 
-      /* Frase de impacto */
       .quote-section { padding: 3.5rem 1.4rem; }
       .quote-sub { font-size: 0.9rem; margin-bottom: 2rem; }
 
-      /* CTA final */
       .cta-section { padding: 3.5rem 1.4rem; }
       .cta-buttons { flex-direction: column; align-items: center; }
 
-      /* Rodape */
       footer { padding: 2rem 1.4rem; flex-direction: column; text-align: center; gap: 1.2rem; }
     }
 
-    /* Telas muito pequenas (abaixo de 380px) */
     @media (max-width: 380px) {
       .hero-ring { width: 200px; height: 200px; }
       .hero-title { font-size: 4rem; }
@@ -648,6 +633,7 @@
       <li><a href="#instagram">Instagram</a></li>
       <li><a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank">Spotify</a></li>
       <li><a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank">YouTube</a></li>
+      <li><a href="https://www.twitch.tv/0r3lh4" target="_blank">Twitch</a></li>
     </ul>
     <!-- Botao hamburguer: so aparece no celular -->
     <button class="hamburger" id="hamburger" aria-label="Abrir menu">
@@ -674,42 +660,35 @@
         <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="mobile-platform-btn spotify">&#127925; Spotify</a>
         <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="mobile-platform-btn instagram">&#128247; Instagram</a>
         <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="mobile-platform-btn youtube">&#9654; YouTube</a>
+        <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="mobile-platform-btn twitch">&#127918; Twitch</a>
       </div>
     </div>
   </div>
 
   <!-- HERO: primeira secao visivel ao carregar o site -->
   <section class="hero">
-    <!-- Manchas de cor decorativas no fundo -->
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
 
-    <!-- Coluna da esquerda: texto e botoes -->
     <div class="hero-content">
       <div class="hero-tag">&#127911; Podcast no ar</div>
-      <!-- EDITE AQUI: titulo principal -->
       <h1 class="hero-title">COELHO<br>CAST</h1>
-      <!-- EDITE AQUI: subtitulo -->
       <p class="hero-sub">
         <strong>Profissões reais. Histórias únicas.</strong><br>
         Cada episódio é uma janela para um mundo que você nunca imaginou — contado por quem vive isso todos os dias.
       </p>
       <div class="hero-ctas">
-        <!-- EDITE AQUI: link do botao principal -->
         <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-primary">&#9654; Escute Agora</a>
         <a href="#episodios" class="btn-ghost">Ver episódios →</a>
       </div>
     </div>
 
-    <!-- Coluna da direita: circulo com anel giratorio -->
     <div class="hero-image-wrap">
       <div class="hero-ring">
         <div class="hero-ring-outer"></div>
-        <!-- Mascote do Coelho Cast no circulo do hero -->
         <div class="hero-circle">
           <img src="img/IMG-20260309-WA0362.jpg" alt="Mascote Coelho Cast" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
         </div>
-        <!-- EDITE AQUI: badge flutuante -->
         <div class="hero-badge">
           <div class="hero-badge-num">100%</div>
           <div class="hero-badge-label">Histórias Reais</div>
@@ -718,12 +697,11 @@
     </div>
   </section>
 
-  <!-- BARRA DE PLATAFORMAS: faixa com links do Spotify, YouTube e Instagram -->
+  <!-- BARRA DE PLATAFORMAS -->
   <div class="platforms">
     <span class="platforms-label">Disponível em</span>
     <div class="platforms-divider"></div>
     <div class="platform-links">
-      <!-- EDITE AQUI: links de cada plataforma -->
       <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="platform-link">
         <div class="platform-icon spotify">&#127925;</div> Spotify
       </a>
@@ -733,37 +711,33 @@
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="platform-link">
         <div class="platform-icon instagram">&#128247;</div> Instagram
       </a>
+      <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="platform-link">
+        <div class="platform-icon twitch">&#127918;</div> Twitch
+      </a>
     </div>
   </div>
 
-  <!-- SECAO SOBRE: id="sobre" permite o link #sobre do menu rolar ate aqui -->
+  <!-- SECAO SOBRE -->
   <section id="sobre">
     <div class="about animate-in">
-      <!-- Texto da esquerda -->
       <div class="about-text">
         <p class="section-tag">// Sobre o podcast</p>
-        <!-- EDITE AQUI: titulo da secao -->
         <h2 class="section-title">O que é o<br><span>Coelho Cast?</span></h2>
-        <!-- EDITE AQUI: paragrafos descritivos -->
         <p class="about-body">
           Cada pessoa carrega uma profissão — e junto dela, uma história que ninguém conta. O Coelho Cast dá voz a essas histórias: do cotidiano mais inusitado ao bastidor mais surpreendente de profissões que talvez você nunca imaginou que existiam.
         </p>
         <p class="about-body">
           Entreterimento e conhecimento de verdade. Sem roteiro ensaiado, sem respostas óbvias. Só gente real falando sobre o que vive.
         </p>
-        <!-- EDITE AQUI: numeros das estatisticas -->
         <div class="about-stats">
           <div class="stat-card"><div class="stat-num">+10k</div><div class="stat-label">Visualizações</div></div>
           <div class="stat-card"><div class="stat-num">+4</div><div class="stat-label">Profissões</div></div>
           <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Plataformas</div></div>
         </div>
       </div>
-      <!-- Card decorativo da direita -->
       <div class="animate-in">
         <div class="about-card-main">
-          <!-- EDITE AQUI: frase de destaque -->
           <p class="about-quote">"Você sabia que essa profissão <span>existe de verdade?</span>"</p>
-          <!-- EDITE AQUI: nome e cargo do host -->
           <div class="about-host">
             <div class="about-host-avatar" style="padding:0;overflow:hidden;">
               <img src="img/IMG-20260309-WA0362.jpg" alt="0R3LH4" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
@@ -784,7 +758,6 @@
       <p class="section-tag">// Por que ouvir</p>
       <h2 class="section-title">O que você vai encontrar</h2>
     </div>
-    <!-- EDITE AQUI: os 3 cards. Copie um bloco <div class="feature-card"> para adicionar mais -->
     <div class="features-grid animate-in">
       <div class="feature-card">
         <div class="feature-icon">&#128188;</div>
@@ -804,7 +777,7 @@
     </div>
   </section>
 
-  <!-- SECAO DE EPISODIOS: id="episodios" permite o link #episodios do menu rolar ate aqui -->
+  <!-- SECAO DE EPISODIOS -->
   <section class="episodes" id="episodios">
     <div class="episodes-header animate-in">
       <div>
@@ -813,10 +786,8 @@
       </div>
       <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-ghost">Ver todos →</a>
     </div>
-    <!-- EDITE AQUI: lista de episodios. Copie um bloco <a class="episode-item"> para adicionar mais -->
     <div class="episode-list animate-in">
 
-      <!-- Episodio 1: EDITE o href, titulo, duracao e categoria -->
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="episode-item">
         <div class="episode-num">01</div>
         <div class="episode-info">
@@ -827,7 +798,6 @@
         <div class="episode-play">&#9654;</div>
       </a>
 
-      <!-- Episodio 2 -->
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="episode-item">
         <div class="episode-num">02</div>
         <div class="episode-info">
@@ -838,7 +808,6 @@
         <div class="episode-play">&#9654;</div>
       </a>
 
-      <!-- Episodio 3 -->
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="episode-item">
         <div class="episode-num">03</div>
         <div class="episode-info">
@@ -849,7 +818,6 @@
         <div class="episode-play">&#9654;</div>
       </a>
 
-      <!-- Episodio 4 -->
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="episode-item">
         <div class="episode-num">04</div>
         <div class="episode-info">
@@ -863,42 +831,14 @@
     </div>
   </section>
 
-  <!--
-    =====================================================================
-    SECAO INSTAGRAM — integrada com Behold.so
-
-    O Behold e um servico gratuito que carrega o feed do Instagram
-    automaticamente no site. Voce so configura uma vez e pronto:
-    sempre que postar no Instagram, o site atualiza sozinho.
-
-    COMO CONFIGURAR (5 minutos):
-    1. Acesse https://behold.so e crie uma conta gratuita
-    2. Clique em "New Feed" e conecte o @coelho.cast
-    3. Configure visual: numero de colunas, linhas, espacamento
-    4. Copie o "Feed ID" que aparece (ex: abc123XYZ)
-    5. Cole o ID no lugar de SEU_FEED_ID_AQUI abaixo (2 lugares)
-    6. Salve e publique o site — o feed aparece automaticamente!
-
-    Plano gratuito: ate 2 feeds, atualizacao a cada 24h.
-    =====================================================================
-  -->
+  <!-- SECAO INSTAGRAM -->
   <section class="instagram-section" id="instagram">
     <p class="section-tag" style="text-align:center">// @coelho.cast</p>
     <h2 class="section-title" style="text-align:center">No Instagram</h2>
     <p style="text-align:center;color:var(--muted);font-size:0.9rem;margin-top:-0.5rem;margin-bottom:0.5rem">Últimos posts do perfil</p>
 
-    <!-- Divisor decorativo -->
     <div class="instagram-divider">últimas publicações</div>
 
-    <!--
-      WIDGET BEHOLD
-      Apos configurar o Behold, substitua as duas ocorrencias de
-      SEU_FEED_ID_AQUI pelo seu Feed ID real.
-
-      O <script> carrega a logica do widget.
-      O <behold-widget> e onde o feed aparece na tela.
-    -->
-    <!-- Widget do Behold: carrega o feed do @coelho.cast automaticamente -->
     <div class="behold-wrap">
       <behold-widget feed-id="NicQ9BZzl1SCUjTx0VZq"></behold-widget>
       <script>
@@ -913,7 +853,6 @@
 
   <!-- FRASE DE IMPACTO -->
   <section class="quote-section animate-in">
-    <!-- EDITE AQUI: frase principal -->
     <h2 class="quote-big">Toda profissão tem uma<br><span>história que vale ouvir.</span></h2>
     <p class="quote-sub">E o Coelho Cast existe para contar essas histórias.</p>
     <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-primary">&#9654; Começar a ouvir</a>
@@ -923,33 +862,26 @@
   <section class="cta-section animate-in">
     <p class="section-tag">// Fique por dentro</p>
     <h2 class="section-title">Novos episódios toda semana</h2>
-    <!-- EDITE AQUI: texto de chamada -->
     <p class="cta-body">Siga o Coelho Cast nas plataformas e nunca perca um episódio. Conteúdo novo, histórias novas — toda semana.</p>
-    <!-- EDITE AQUI: botoes finais -->
     <div class="cta-buttons">
       <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="btn-primary">&#127925; Ouvir no Spotify</a>
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="btn-outline">&#128247; Seguir no Instagram</a>
       <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="btn-outline">&#9654; Ver no YouTube</a>
+      <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="btn-twitch">&#127918; Twitch</a>
     </div>
   </section>
 
   <!-- RODAPE -->
   <footer>
     <div class="footer-brand">Coelho Cast</div>
-    <!-- EDITE AQUI: texto de copyright -->
-    <p class="footer-copy">© 2025 CoelhoCast · @c.j.coelho · Feito com &#127908;</p>
+    <p class="footer-copy">© 2025 CoelhoCast · @c.j.coelho · Site feito por Carlos Jessé;</p>
     <div class="footer-socials">
       <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="footer-social-link" title="Spotify">&#127925;</a>
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="footer-social-link" title="Instagram">&#128247;</a>
       <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="footer-social-link" title="YouTube">&#9654;</a>
+      <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="footer-social-link twitch" title="Twitch">&#127918;</a>
     </div>
   </footer>
-
-  <!--
-    SCRIPTS JAVASCRIPT
-    Ficam no FINAL do body para que o HTML ja tenha carregado
-    antes de o JS tentar manipula-lo.
-  -->
 
   <script>
     // ANIMACOES DE SCROLL
@@ -971,14 +903,12 @@
     const menuClose   = document.getElementById('menuClose');
     const backdrop    = document.getElementById('menuBackdrop');
 
-    // Abre o menu: adiciona classe "open" e bloqueia scroll da pagina
     function openMenu() {
       mobileMenu.classList.add('open');
       hamburger.classList.add('active');
-      document.body.style.overflow = 'hidden'; // impede scroll com menu aberto
+      document.body.style.overflow = 'hidden';
     }
 
-    // Fecha o menu
     function closeMenu() {
       mobileMenu.classList.remove('open');
       hamburger.classList.remove('active');
@@ -987,14 +917,12 @@
 
     hamburger.addEventListener('click', openMenu);
     menuClose.addEventListener('click', closeMenu);
-    backdrop.addEventListener('click', closeMenu); // fechar ao clicar fora
+    backdrop.addEventListener('click', closeMenu);
 
-    // Fechar ao clicar em qualquer link interno (os que tem data-close)
     document.querySelectorAll('[data-close]').forEach(link => {
       link.addEventListener('click', closeMenu);
     });
 
-    // Fechar com tecla ESC
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeMenu();
     });
