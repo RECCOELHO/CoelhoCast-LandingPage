@@ -35,6 +35,7 @@
       --white:        #f4f2ff;  /* branco levemente azulado */
       --muted:        #9b97b8;  /* cinza-roxo (textos secundarios) */
       --twitch:       #9146FF;  /* roxo da Twitch */
+      --whatsapp:     #25D366;  /* verde do WhatsApp */
     }
 
     /* Faz os links de ancora (#secao) rolarem suavemente */
@@ -212,6 +213,19 @@
     }
     .btn-twitch:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(145,70,255,0.55); }
 
+    /* Botao WhatsApp */
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: #25D366;
+      color: #fff; font-family: 'Syne', sans-serif;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 1rem 2.2rem;
+      border-radius: 100px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 30px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+
     /* Lado direito do hero: circulo com anel giratorio */
     .hero-image-wrap {
       position: relative; z-index: 2;
@@ -275,6 +289,7 @@
     .platform-icon.instagram { background: rgba(225,48,108,0.15); color: #E1306C; }
     .platform-icon.youtube   { background: rgba(255,0,0,0.15);    color: #FF0000; }
     .platform-icon.twitch    { background: rgba(145,70,255,0.15); color: #9146FF; }
+    .platform-icon.whatsapp  { background: rgba(37,211,102,0.15); color: #25D366; }
 
     /* ESTILOS COMPARTILHADOS POR SECOES */
     section { padding: 6rem 4rem; }
@@ -386,6 +401,7 @@
     .footer-social-link { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.95rem; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
     .footer-social-link:hover { background: rgba(100,86,191,0.2); border-color: rgba(100,86,191,0.4); transform: translateY(-2px); }
     .footer-social-link.twitch:hover { background: rgba(145,70,255,0.2); border-color: rgba(145,70,255,0.5); }
+    .footer-social-link.whatsapp:hover { background: rgba(37,211,102,0.2); border-color: rgba(37,211,102,0.5); }
 
     /* ANIMACOES DE ENTRADA ao rolar a pagina */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -531,6 +547,7 @@
     .mobile-platform-btn.instagram { background: rgba(225,48,108,0.1); border: 1px solid rgba(225,48,108,0.25); color: #f77; }
     .mobile-platform-btn.youtube   { background: rgba(255,0,0,0.1);    border: 1px solid rgba(255,0,0,0.2);     color: #ff6b6b; }
     .mobile-platform-btn.twitch    { background: rgba(145,70,255,0.1); border: 1px solid rgba(145,70,255,0.3);  color: #bf94ff; }
+    .mobile-platform-btn.whatsapp  { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3);  color: #25D366; }
     .mobile-platform-btn:hover { transform: translateX(4px); }
 
     /* ─── RESPONSIVIDADE MOBILE (abaixo de 768px) ─── */
@@ -553,7 +570,7 @@
       .hero-badge-num { font-size: 1.5rem; }
       .hero-ctas { justify-content: center; flex-direction: column; align-items: center; }
       .hero-sub { margin: 0 auto 2rem; font-size: 1rem; }
-      .btn-primary, .btn-outline, .btn-twitch { width: 100%; max-width: 300px; justify-content: center; }
+      .btn-primary, .btn-outline, .btn-twitch, .btn-whatsapp { width: 100%; max-width: 300px; justify-content: center; }
 
       .platforms { padding: 1.2rem 1.4rem; gap: 1rem; }
       .platforms-label { display: none; }
@@ -634,6 +651,7 @@
       <li><a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank">Spotify</a></li>
       <li><a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank">YouTube</a></li>
       <li><a href="https://www.twitch.tv/0r3lh4" target="_blank">Twitch</a></li>
+      <li><a href="https://chat.whatsapp.com/HBEmNpYq64b46Bsa2VW1mn" target="_blank">Comunidade</a></li>
     </ul>
     <!-- Botao hamburguer: so aparece no celular -->
     <button class="hamburger" id="hamburger" aria-label="Abrir menu">
@@ -661,6 +679,7 @@
         <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="mobile-platform-btn instagram">&#128247; Instagram</a>
         <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="mobile-platform-btn youtube">&#9654; YouTube</a>
         <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="mobile-platform-btn twitch">&#127918; Twitch</a>
+        <a href="https://chat.whatsapp.com/HBEmNpYq64b46Bsa2VW1mn" target="_blank" class="mobile-platform-btn whatsapp">&#128172; Comunidade Rabbit</a>
       </div>
     </div>
   </div>
@@ -713,6 +732,9 @@
       </a>
       <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="platform-link">
         <div class="platform-icon twitch">&#127918;</div> Twitch
+      </a>
+      <a href="https://chat.whatsapp.com/HBEmNpYq64b46Bsa2VW1mn" target="_blank" class="platform-link">
+        <div class="platform-icon whatsapp">&#128172;</div> Comunidade Rabbit
       </a>
     </div>
   </div>
@@ -868,18 +890,20 @@
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="btn-outline">&#128247; Seguir no Instagram</a>
       <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="btn-outline">&#9654; Ver no YouTube</a>
       <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="btn-twitch">&#127918; Twitch</a>
+      <a href="https://chat.whatsapp.com/HBEmNpYq64b46Bsa2VW1mn" target="_blank" class="btn-whatsapp">&#128172; Comunidade Rabbit</a>
     </div>
   </section>
 
   <!-- RODAPE -->
   <footer>
     <div class="footer-brand">Coelho Cast</div>
-    <p class="footer-copy">© 2025 CoelhoCast · @c.j.coelho · Site feito por Carlos Jessé;</p>
+    <p class="footer-copy">© 2025 CoelhoCast · @c.j.coelho · Feito com &#127908;</p>
     <div class="footer-socials">
       <a href="https://open.spotify.com/user/22h6aixnfgi72ehjxqxykcbgi" target="_blank" class="footer-social-link" title="Spotify">&#127925;</a>
       <a href="https://www.instagram.com/coelho.cast/" target="_blank" class="footer-social-link" title="Instagram">&#128247;</a>
       <a href="https://www.youtube.com/channel/UCzTt6K3gWZBjhg26jiDLeZw" target="_blank" class="footer-social-link" title="YouTube">&#9654;</a>
       <a href="https://www.twitch.tv/0r3lh4" target="_blank" class="footer-social-link twitch" title="Twitch">&#127918;</a>
+      <a href="https://chat.whatsapp.com/HBEmNpYq64b46Bsa2VW1mn" target="_blank" class="footer-social-link whatsapp" title="Comunidade Rabbit">&#128172;</a>
     </div>
   </footer>
 
